@@ -1,0 +1,27 @@
+<div class="container" *ngIf="verTabla == false">
+    <div class="card">
+      <h2>Borra Tus Videos</h2>
+      <img alt = "icono de perfil" src="../../assets/icono-video.png">
+      <form>
+        <div class="form-group">
+          <label for="username">Ingresa el titulo de tu video</label>
+          <input type="text" id="titulo" name="titulo" [(ngModel)]="titulo" placeholder="Titulo">
+        </div>
+        <button class="btn" (click)="a()">Borrar</button>
+      </form>
+    </div>
+    <div *ngIf="texto">
+        <p font color="red">El video sera borrado</p>
+        <button class="btn" (click)="borrarVideo()">Confirmar</button>
+    </div>
+</div>
+
+<div class="container" *ngIf="verTabla">
+  <div class="card">
+    <h2>Video Borrado Correctamente</h2>
+      <img alt = "icono de perfil" src="../../assets/tick-verde.png">
+    <h3>Tus Videos</h3> 
+   <br>
+   <button class="btn" routerLink="/home">Volver</button>
+  </div>
+</div>

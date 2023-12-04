@@ -1,0 +1,34 @@
+<div class="container" *ngIf="verTabla == false">
+    <div class="card">
+      <h2>Edita Tus Videos</h2>
+      <img alt = "icono de perfil" src="../../assets/icono-video.png">
+      <form>
+        <div class="form-group">
+          <label for="username">Ingresa el titulo de tu video</label>
+          <input type="text" id="titulo" name="titulo" [(ngModel)]="titulo" placeholder="Titulo">
+        </div>
+        <div class="form-group">
+          <label>Ingresa el Nuevo Titulo</label>
+          <input type="text" id="nuevoTitulo" name="nuevoTitulo" [(ngModel)]="nuevoTitulo" placeholder="Nuevo Titulo">
+        </div>
+        <div class="form-group">
+          <label>Ingresa las nuevas etiquetas</label>
+          <input type="text" id="nuevoEtiquetas" name="nuevoEtiquetas" [(ngModel)]="nuevasEtiquetas" placeholder="Nuevas Etiquetas">
+        </div>
+        <button class="btn" (click)="editarVideo()">Aplicar</button>
+      </form>
+    </div>
+</div>
+
+<div class="container" *ngIf="verTabla">
+  <div class="card">
+    <h2>Video Editado Correctamente</h2>
+      <img alt = "icono de perfil" src="../../assets/tick-verde.png">
+    <h3>Nuevo Titulo</h3>
+   {{nuevoTitulo}}
+   <h3>Nuevas Etiquetas</h3>
+   {{nuevasEtiquetas}}
+   <br>
+   <button class="btn" routerLink="/home">Volver</button>
+  </div>
+</div>

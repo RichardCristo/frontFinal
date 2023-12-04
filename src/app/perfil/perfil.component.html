@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="card">
+      <h2>Tu Perfil</h2>
+      <img alt = "icono de perfil" src="../../assets/icono-perfil.png">
+      <form>
+        <div class="form-group">
+          <label for="username">Nombre de Usuario</label>
+          <br>
+          {{ usuario }}
+        </div>
+        <div class="form-group">
+          <label for="password">Tus Videos</label>
+          <div *ngFor="let item of videosPublicados; let i = index" [attr.data-index]="i">
+            {{videosPublicados[i]}}
+          </div>
+        </div>
+        <p>No tenés cuenta? <a routerLink="/register">Registrate aquí</a></p>
+        <button class="btn" routerLink="/home">Volver</button>
+        <button class="btn" routerLink="/editarVideos">Editar Videos</button>
+        <button class="btn" routerLink="/borrarVideos">Borar Videos</button>
+      </form>
+    </div>
+</div>

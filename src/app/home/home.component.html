@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="header">
+    <h1>Youtube Primitivo</h1>
+    <div class="search-bar">
+      <input type="text" [(ngModel)]="titulo" placeholder="Buscar">
+      <button class="search-button" (click)="getUnVideo()">Buscar</button>
+      <input type="text" [(ngModel)]="filtro" placeholder="Filtro">
+      <button class="search-button" (click)="filtrarVideo()">Filtrar</button>
+    </div>
+  </div>
+    <button class="botn" routerLink="/subirVideo">Subir Video</button>
+    <button class="botn" routerLink="/login">LogIn</button>
+    <button class="botn" routerLink="/logOut" (click)="cerrarSesion()">LogOut</button>
+    <button class="botn" routerLink="/perfil">Tu Perfil</button>
+    <div *ngFor="let item of videosLista; let i = index" [attr.data-index]="i">
+      <div class="videos-grid" *ngIf="verTabla">
+        <div class="video-card">
+            <h3>{{ videosLista[i].titulo }}</h3>
+            <img src="http://localhost:3000/miniaturas/{{ videosLista[i].miniatura }}">
+            <div class="actions">
+                <div class="comment-section">
+                    <input type="text" id="comentario" name="comentario" [(ngModel)]="comentarioArray[i]" placeholder="comentario">
+                    <button class="botn" (click)="comentar(videosLista[i].titulo, i)">comentar</button>
+                    <button class="botn" (click)="verComentariosFun(i)" >ver comentarios</button>
+                </div>
+                <div class="action-buttons">
+                    <button class="botn" (click)="likear(videosLista[i].titulo)"><mat-icon>thumb_up</mat-icon></button>
+                    <button class="botn" (click)="dislikear(videosLista[i].titulo)"><mat-icon>thumb_down</mat-icon></button>
+                </div>
+            </div>
+            <div class="likes-dislikes">
+                <p>Likes: {{ videosLista[i].likes.length }}</p>
+                <p>Dislikes: {{ videosLista[i].dislikes.length }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="container" *ngIf="verComentariosArray[i]">
+      <div class="video-card">
+        <h2>Comentarios de {{videosLista[i].titulo}}</h2>
+        <button class="botn" (click)="cerrar(i)">Cerrar</button>
+        <div *ngFor="let item of videosLista[i].comentarios; let j = index" [attr.data-index]="j">
+          <p> {{ videosLista[i].comentarios[j].comentario }} </p>
+          <div class="action-buttons">
+              <button class="botn" (click)="likearComentario(videosLista[i].titulo, j)"><mat-icon>thumb_up</mat-icon></button>
+              <button class="botn" (click)="dislikearUnComentario(videosLista[i].titulo, j)"><mat-icon>thumb_down</mat-icon></button>
+          </div>
+          <p> Likes: {{ videosLista[i].comentarios[j].like.length }} </p>
+          <p> Dislikes: {{ videosLista[i].comentarios[j].dislike.length }} </p>
+        </div>
+      </div>
+    </div>
+  </div> 
+</div>
+

@@ -1,0 +1,43 @@
+<div class="container" *ngIf="verTabla == false">
+    <div class="card">
+      <h2>Sube un video</h2>
+      <form>
+        <div class="form-group">
+          <label for="username">Titulo</label>
+          <input type="text" id="username" [(ngModel)]="titulo" name = "titulo" class="form-control" placeholder="Ingresa un titulo" required>
+        </div>
+        <div class="form-group">
+          <label for="text">Etiquetas</label>
+          <input type="text" id="text" [(ngModel)]  ="etiquetas" name = "etiquetas" class="form-control" placeholder="Ingrese las etiquetas" required>
+        </div>
+        <div class="form-group">
+          <label for="image">Imagen</label>
+          <input type="file" accept=".jpg, .png, .webp, .jpeg" id="image" name="miniatura" (change)="onFileChange($event)">
+        </div>
+        <button class="btn" (click) = "anadirVideo()" routerLink="/confirmacion">Subir</button>
+      </form>
+    </div>
+</div>
+
+<div class="container" *ngIf="verTabla">
+  <div class="card">
+    <h2>Video Subido Correctamente</h2>
+    <img alt = "icono de perfil" src="../../assets/tick-verde.png">
+    <form>
+      <div class="form-group">
+          <label for="username">Miniatura</label>
+          <br>
+          <img src="http://localhost:3000/miniaturas/{{ url }}">
+        </div>
+      <div class="form-group">
+        <label for="username">Titulo del Video</label>
+        {{titulo}}
+      </div>
+      <div class="form-group">
+        <label for="password">Etiquetas del video</label>
+      {{etiquetas}}
+      </div>
+      <button class="btn" routerLink="/home">Volver</button>
+    </form>
+  </div>
+</div>
