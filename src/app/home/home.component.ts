@@ -20,6 +20,8 @@ export class HomeComponent {
   comentario: string = ""
   comentarioArray: Array<string> = []
   verComentariosArray: Array<boolean> = []
+  verBotones: boolean = true
+  verLogin: boolean = true
 
   constructor(private servicio: ServicioService){
     this.verTabla = false
@@ -49,6 +51,13 @@ export class HomeComponent {
   }
 
    ngOnInit(){
+    if(!localStorage.getItem('token')){
+      this.verBotones = false
+    }
+    else{
+      this.verLogin = false
+    }
+
     this.servicio.getVideos().subscribe({
       next: (data: any) => {
         console.log(data);

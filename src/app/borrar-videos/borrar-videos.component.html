@@ -4,8 +4,10 @@
       <img alt = "icono de perfil" src="../../assets/icono-video.png">
       <form>
         <div class="form-group">
-          <label for="username">Ingresa el titulo de tu video</label>
-          <input type="text" id="titulo" name="titulo" [(ngModel)]="titulo" placeholder="Titulo">
+          <label for="username">Clickea el video que quieras borrar</label>
+          <div *ngFor="let item of videosPublicados; let i = index" [attr.data-index]="i">
+            <button class="btn" (click)="elegirVideo(videosPublicados[i])">{{videosPublicados[i]}}</button>
+          </div>
         </div>
         <button class="btn" (click)="a()">Borrar</button>
       </form>

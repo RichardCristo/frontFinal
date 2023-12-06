@@ -3,15 +3,15 @@
     <h1>Youtube Primitivo</h1>
     <div class="search-bar">
       <input type="text" [(ngModel)]="titulo" placeholder="Buscar">
-      <button class="search-button" (click)="getUnVideo()">Buscar</button>
+      <button class="search-button" (click)="getUnVideo()"><mat-icon>search</mat-icon></button>
       <input type="text" [(ngModel)]="filtro" placeholder="Filtro">
-      <button class="search-button" (click)="filtrarVideo()">Filtrar</button>
+      <button class="search-button" (click)="filtrarVideo()"><mat-icon>search</mat-icon></button>
     </div>
   </div>
-    <button class="botn" routerLink="/subirVideo">Subir Video</button>
-    <button class="botn" routerLink="/login">LogIn</button>
-    <button class="botn" routerLink="/logOut" (click)="cerrarSesion()">LogOut</button>
-    <button class="botn" routerLink="/perfil">Tu Perfil</button>
+    <button *ngIf="verBotones" class="botn" routerLink="/subirVideo">Subir Video</button>
+    <button *ngIf="verLogin" class="botn" routerLink="/login">LogIn</button>
+    <button *ngIf="verBotones" class="botn" routerLink="/logOut" (click)="cerrarSesion()">LogOut</button>
+    <button *ngIf="verBotones" class="botn" routerLink="/perfil">Tu Perfil</button>
     <div *ngFor="let item of videosLista; let i = index" [attr.data-index]="i">
       <div class="videos-grid" *ngIf="verTabla">
         <div class="video-card">
@@ -20,12 +20,12 @@
             <div class="actions">
                 <div class="comment-section">
                     <input type="text" id="comentario" name="comentario" [(ngModel)]="comentarioArray[i]" placeholder="comentario">
-                    <button class="botn" (click)="comentar(videosLista[i].titulo, i)">comentar</button>
+                    <button *ngIf="verBotones" class="botn" (click)="comentar(videosLista[i].titulo, i)">comentar</button>
                     <button class="botn" (click)="verComentariosFun(i)" >ver comentarios</button>
                 </div>
                 <div class="action-buttons">
-                    <button class="botn" (click)="likear(videosLista[i].titulo)"><mat-icon>thumb_up</mat-icon></button>
-                    <button class="botn" (click)="dislikear(videosLista[i].titulo)"><mat-icon>thumb_down</mat-icon></button>
+                    <button *ngIf="verBotones" class="botn" (click)="likear(videosLista[i].titulo)"><mat-icon>thumb_up</mat-icon></button>
+                    <button *ngIf="verBotones" class="botn" (click)="dislikear(videosLista[i].titulo)"><mat-icon>thumb_down</mat-icon></button>
                 </div>
             </div>
             <div class="likes-dislikes">
@@ -41,8 +41,8 @@
         <div *ngFor="let item of videosLista[i].comentarios; let j = index" [attr.data-index]="j">
           <p> {{ videosLista[i].comentarios[j].comentario }} </p>
           <div class="action-buttons">
-              <button class="botn" (click)="likearComentario(videosLista[i].titulo, j)"><mat-icon>thumb_up</mat-icon></button>
-              <button class="botn" (click)="dislikearUnComentario(videosLista[i].titulo, j)"><mat-icon>thumb_down</mat-icon></button>
+              <button *ngIf="verBotones" class="botn" (click)="likearComentario(videosLista[i].titulo, j)"><mat-icon>thumb_up</mat-icon></button>
+              <button *ngIf="verBotones" class="botn" (click)="dislikearUnComentario(videosLista[i].titulo, j)"><mat-icon>thumb_down</mat-icon></button>
           </div>
           <p> Likes: {{ videosLista[i].comentarios[j].like.length }} </p>
           <p> Dislikes: {{ videosLista[i].comentarios[j].dislike.length }} </p>

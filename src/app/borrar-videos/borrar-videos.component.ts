@@ -10,9 +10,41 @@ export class BorrarVideosComponent {
   verTabla: boolean=false
   texto: boolean=false
   titulo: string=""
+  usuario: any
+  datosUsuario : any
+  videosPublicados: Array<String> = []
 
   constructor(private servicio: ServicioService){
  
+  }
+
+  ngOnInit(){
+    this.usuario = localStorage.getItem("usuario")
+
+    this.servicio.getVideos().subscribe({
+      next:(data: any) => {
+        data.forEach((element: any) => {
+         if(element.publicador == this.usuario){
+          this.videosPublicados.push(element.titulo)
+         } 
+        });
+      }
+    })
+
+    this.servicio.getUsuario(this.usuario).subscribe({
+      next: (data: any) => {
+        this.datosUsuario = data.usuario
+        console.log(data);
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    })
+  }
+
+  elegirVideo(tituloActual: any){
+    this.titulo = tituloActual
+    console.log(this.titulo)
   }
 
   a(){

@@ -49,6 +49,10 @@ const routes: Routes = [
     path: "borrarVideos",
     component: BorrarVideosComponent,
     title: "borrarVideos"
+  },
+  {
+    path: "**",
+    component: HomeComponent
   }
 ];
 
