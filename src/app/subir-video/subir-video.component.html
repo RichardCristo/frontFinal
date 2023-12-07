@@ -18,7 +18,7 @@
           <label for="image">Imagen</label>
           <input type="file" accept=".jpg, .png, .webp, .jpeg" id="image" name="miniatura" (change)="onFileChange($event)">
         </div>
-        <button class="btn" (click) = "anadirVideo()" routerLink="/confirmacion">Subir</button>
+        <button class="btn" (click) = "extractCharacters()" (click) = "anadirVideo()" routerLink="/confirmacion">Subir</button>
       </form>
     </div>
 </div>

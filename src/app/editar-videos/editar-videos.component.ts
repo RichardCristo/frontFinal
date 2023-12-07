@@ -12,10 +12,12 @@ export class EditarVideosComponent {
   nuevoTitulo: string =""
   nuevasEtiquetas: string ="" 
   verTabla: boolean=false
-  titulo!: string
+  titulo: string = ""
   usuario: any
   datosUsuario : any
-  videosPublicados: Array<String> = []
+  videosPublicados: any
+  etiquetas: any
+  mostrarEtiquetas: any
 
   constructor(private servicio: ServicioService){
  
@@ -25,29 +27,28 @@ export class EditarVideosComponent {
   ngOnInit(){
     this.usuario = localStorage.getItem("usuario")
 
-    this.servicio.getVideos().subscribe({
+    this.servicio.videosDelUsuario(this.usuario).subscribe({
       next:(data: any) => {
-        data.forEach((element: any) => {
-         if(element.publicador == this.usuario){
-          this.videosPublicados.push(element.titulo)
-         } 
-        });
+        this.videosPublicados = JSON.parse(JSON.stringify(data))
       }
     })
 
     this.servicio.getUsuario(this.usuario).subscribe({
       next: (data: any) => {
         this.datosUsuario = data.usuario
+        console.log(this.datosUsuario)
         console.log(data);
       },
       error: (error: any) => {
         console.log(error);
       }
     })
+    
   }
 
-  elegirVideo(tituloActual: any){
+  elegirVideo(tituloActual: any, etiquetasActual: any){
     this.titulo = tituloActual
+    this.etiquetas = etiquetasActual
     console.log(this.titulo)
   }
 

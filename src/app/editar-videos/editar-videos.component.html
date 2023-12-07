@@ -6,16 +6,16 @@
         <div class="form-group">
           <label for="username">Clickea el video que queres editar</label>
           <div *ngFor="let item of videosPublicados; let i = index" [attr.data-index]="i">
-            <button class="btn" (click)="elegirVideo(videosPublicados[i])">{{videosPublicados[i]}}</button>
+              <button class="btn" (click)="elegirVideo(videosPublicados[i].titulo, videosPublicados[i].etiquetas)">{{videosPublicados[i].titulo}}</button>
           </div>
         </div>
         <div class="form-group">
           <label>Ingresa el Nuevo Titulo</label>
-          <input type="text" id="nuevoTitulo" name="nuevoTitulo" [(ngModel)]="nuevoTitulo" placeholder="Nuevo Titulo">
+          <input type="text" id="nuevoTitulo" name="nuevoTitulo" [(ngModel)]="nuevoTitulo" placeholder="{{titulo}}">
         </div>
         <div class="form-group">
           <label>Ingresa las nuevas etiquetas</label>
-          <input type="text" id="nuevoEtiquetas" name="nuevoEtiquetas" [(ngModel)]="nuevasEtiquetas" placeholder="Nuevas Etiquetas">
+          <input type="text" id="nuevoEtiquetas" name="nuevoEtiquetas" [(ngModel)]="nuevasEtiquetas" placeholder="{{etiquetas}}">
         </div>
         <button class="btn" (click)="editarVideo()">Aplicar</button>
       </form>

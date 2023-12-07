@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, SecurityContext } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { ServicioService } from '../servicio.service';
-
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+ 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -22,21 +23,26 @@ export class HomeComponent {
   verComentariosArray: Array<boolean> = []
   verBotones: boolean = true
   verLogin: boolean = true
-
-  constructor(private servicio: ServicioService){
+  link: string=""
+ 
+ 
+ 
+  constructor(private servicio: ServicioService, public sanitizer: DomSanitizer){
     this.verTabla = false
     this.verComentarios = false
     this.titulo= ""
     this.likes = 0
     this.dislikes = 0
     this.filtro=""
+    
   }
-
- public getUnVideo(){
+  
+ 
+public getUnVideo(){
     var headers = new HttpHeaders({
       'Authorization': `${localStorage.getItem("token")}`
     })
-
+ 
     this.servicio.getUnVideo(this.titulo).subscribe(
       response => {
         console.log(response);
@@ -48,16 +54,20 @@ export class HomeComponent {
         console.log(error);
       }
     )
+     
   }
-
+  
+ 
    ngOnInit(){
+    
+ 
     if(!localStorage.getItem('token')){
       this.verBotones = false
     }
     else{
       this.verLogin = false
     }
-
+ 
     this.servicio.getVideos().subscribe({
       next: (data: any) => {
         console.log(data);
@@ -69,8 +79,13 @@ export class HomeComponent {
       }
     })
     this.inicializarBools()
+ 
+  
   }
-
+  
+  
+  
+ 
   likear(titulo: string){
     this.servicio.likear(titulo).subscribe(
       response => {
@@ -84,7 +99,7 @@ export class HomeComponent {
       }
     )
   }
-
+ 
   dislikear(titulo: string){
     this.servicio.dislikear(titulo).subscribe(
       response => {
@@ -115,18 +130,18 @@ export class HomeComponent {
       }
     )
   }
-
+ 
   cerrarSesion(){
     localStorage.removeItem('token');
     this.router.navigate('/login')
   }
-
+ 
   inicializarBools(){
     for (let index = 0; index < this.videosLista.length; index++) {
       this.verComentariosArray.push(false)
     }
   }
-
+ 
   verComentariosFun(indice: number){
     this.verComentariosArray[indice] = true
   }
@@ -134,7 +149,7 @@ export class HomeComponent {
   cerrar(indice: number){
     this.verComentariosArray[indice] = false
   }
-
+ 
   comentar(titulo: string, i: number){
     if(!this.comentarioArray[i]){
       alert("Por favor rellene los campos")
@@ -156,7 +171,7 @@ export class HomeComponent {
       }
     )
   }
-
+ 
   likearComentario(titulo: string, i: number){
     this.servicio.likearComentario(titulo, i).subscribe(
       response => {
@@ -170,7 +185,7 @@ export class HomeComponent {
     )
   }
   
-
+ 
   dislikearUnComentario(titulo: string, i: number){
     this.servicio.dislikearComentario(titulo, i).subscribe(
       response => {
@@ -184,4 +199,3 @@ export class HomeComponent {
     )
   }
 }
-

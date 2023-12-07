@@ -2,7 +2,7 @@
 
 .container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 ;
   padding: 20px;
 }
 
@@ -26,11 +26,11 @@ h1 {
 }
 
 input[type="text"] {
-  padding: 10px;
+  padding: 7px;
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 100%;
-  max-width: 400px;
+  max-width: 200px;
 }
 
 .search-button {
@@ -94,18 +94,33 @@ input[type="text"] {
 }
 
 .comment-section {
+  /* No hay cambios en esta parte */
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+}
 
-  margin-top: 10px; /* Espacio entre los botones y el input */
+.input-and-buttons {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
 }
 
 .comment-section input[type="text"] {
-  /* ... tu estilo actual ... */
-  flex: 1; /* Ocupa todo el espacio disponible */
-  margin-right: 10px; /* Espacio entre el input y el botón */
+  flex: 1;
+  margin-right: 10px;
 }
+
+.buttons-container {
+  /* Alinear los botones uno al lado del otro */
+  display: flex;
+  flex-wrap: wrap; /* Para que los botones se envuelvan si no hay suficiente espacio */
+}
+
+.buttons-container .botn {
+  /* Estilos adicionales para los botones */
+  margin-right: 5px; /* Espacio entre los botones */
+}
+
 
 .actions button:hover {
   background-color: #cc0000;

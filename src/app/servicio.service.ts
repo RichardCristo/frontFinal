@@ -112,4 +112,11 @@ export class ServicioService {
     })
     return this.http.get("http://localhost:3000/usuario/getUsuario/"+usuario,{headers})
   }
+
+  videosDelUsuario(usuario: any){
+    let headers= new HttpHeaders({
+      'Content-type':'application/json', 
+    })
+    return this.http.get("http://localhost:3000/video/videosDelUsuario/"+usuario,{headers})
+  }
 }

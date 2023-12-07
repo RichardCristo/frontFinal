@@ -14,9 +14,14 @@
     <button *ngIf="verBotones" class="botn" routerLink="/perfil">Tu Perfil</button>
     <div *ngFor="let item of videosLista; let i = index" [attr.data-index]="i">
       <div class="videos-grid" *ngIf="verTabla">
-        <div class="video-card">
+        <div class="videos-grid" *ngIf="verTabla">
+          <div class="video-card">
             <h3>{{ videosLista[i].titulo }}</h3>
-            <a href="{{videosLista[i].link}}" target="_blank"><img src="http://localhost:3000/miniaturas/{{ videosLista[i].miniatura }}" ></a>
+            <div class="video-thumbnail">
+              <a target="_blank"><img src="http://localhost:3000/miniaturas/{{ videosLista[i].miniatura }}" ></a>
+              <iframe width="560" height="315" [src]="sanitizer.bypassSecurityTrustResourceUrl(videosLista[i].link)" ></iframe>
+            
+            </div>
             <div class="actions">
                 <div class="comment-section">
                     <input type="text" id="comentario" name="comentario" [(ngModel)]="comentarioArray[i]" placeholder="comentario">
@@ -49,6 +54,5 @@
         </div>
       </div>
     </div>
-  </div> 
+  </div>
 </div>
-
