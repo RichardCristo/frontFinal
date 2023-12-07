@@ -20,6 +20,7 @@ export class SubirVideoComponent {
   miniatura: File | null = null;
   url: any
   publicador: any
+  link: string=""
 
   constructor(private router: Router,private http: HttpClient, private servicio: ServicioService){
 
@@ -57,7 +58,8 @@ export class SubirVideoComponent {
     formData.append('video', JSON.stringify({
       titulo: this.titulo,
       etiquetas: etiquetasArray,
-      publicador : this.publicador
+      publicador : this.publicador,
+      link: this.link
     }));
     formData.append('miniatura',this.miniatura)
   

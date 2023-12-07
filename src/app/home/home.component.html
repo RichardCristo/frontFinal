@@ -16,7 +16,7 @@
       <div class="videos-grid" *ngIf="verTabla">
         <div class="video-card">
             <h3>{{ videosLista[i].titulo }}</h3>
-            <img src="http://localhost:3000/miniaturas/{{ videosLista[i].miniatura }}">
+            <a href="{{videosLista[i].link}}" target="_blank"><img src="http://localhost:3000/miniaturas/{{ videosLista[i].miniatura }}" ></a>
             <div class="actions">
                 <div class="comment-section">
                     <input type="text" id="comentario" name="comentario" [(ngModel)]="comentarioArray[i]" placeholder="comentario">
